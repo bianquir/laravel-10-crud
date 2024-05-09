@@ -13,11 +13,13 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index() : View
+    public function index() 
     {
-        return view('products.index', [
-            'products' => Product::latest()->paginate(3)
-        ]);
+        $products=Product::all();
+        return ($products);
+        //return view('products.index', [
+        //    'products' => Product::latest()->paginate(3)
+        //]);
     }
 
     /**
@@ -76,5 +78,18 @@ class ProductController extends Controller
         $product->delete();
         return redirect()->route('products.index')
                 ->withSuccess('Product is deleted successfully.');
+    }
+
+    public function details(){
+        return('detalles');
+    }
+
+    public function insertProduct(){
+
+    }
+
+    public function respuestaProd($id){
+       $product=Product::find($id);
+       return $product->toJson();
     }
 }
