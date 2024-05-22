@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
 use App\Models\Student;
+use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
@@ -14,8 +15,12 @@ class StudentController extends Controller
 {
     public function index() : View
     {
+        $students = Student::latest()->paginate(3);
+        $birthdays = $this->rememberBirthday();
+        
         return view('students.index', [
-            'students' => Student::latest()->paginate(3)
+            'students' => $students,
+            'birthdays' => $birthdays,
         ]);
     }
 
@@ -85,5 +90,24 @@ class StudentController extends Controller
         
         return view('students.assist', compact('student', 'asistencias'));
     }
+
+    public function rememberBirthday()
+    {
+        $dateNow = Carbon::now()->format('m-d');
+        $birthdays = [];
+        $students = Student::select('name', 'Birthdate')->get();
+
+        if ($students) {
+            foreach ($students as $student) {
+                $studentBirthdate = Carbon::parse($student->Birthdate)->format('m-d');
+                if ($studentBirthdate === $dateNow) {
+                    $birthdays[] = $student;
+                }
+            }
+        }
+
+        return $birthdays;
+    }
+
 
 }

@@ -58,3 +58,4 @@ Route::get('/findStudent', [AssistController::class, 'mostrarVista'])->name('stu
 Route::post('encontrado/student', [AssistController::class, 'buscarStudent'])->name('students.encontrado');
 //////ruta que envia la asistencia/////
 Route::post('assistInsert/{id}', [AssistController::class, 'createAssist'])->name('assist.insert');
+Route::get('/cumple', [StudentController::class, 'rememberBirthday']);

@@ -25,7 +25,7 @@ class UpdateStudentRequest extends FormRequest
             'dni' => 'required|integer|unique:students,dni,'.$this->student->id,
             'name' => 'required|string|max:255',
             'lastname' => 'required|string|max:255',
-            'Birthdate' => 'required|date',
+            'Birthdate' => 'required|date|before_or_equal:'.now()->subYears(18)->format('d-m-Y'),
             'cluster' => 'required|in:A,B',
         ];
     }

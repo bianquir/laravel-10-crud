@@ -16,6 +16,7 @@ class AssistController extends Controller
             return view('students.findStudent');
         }
 
+
         public function buscarStudent(Request $request)
         {
             $dni = $request->input('dni');
@@ -24,21 +25,33 @@ class AssistController extends Controller
             if($student){
                 return view('students.checkAssist', compact('student'));
             }else{
-                return('No existe');
+                return redirect()->route('students.findStudent')->withError('No existe');
             }
             
-
         }
 
-        public function createAssist($id){
-            $student= Student::find($id);
-            if($student){
-                Assist::create([
-                    'student_id' => $student->id,
-                ]);
-                return ('asistencia cargada');
+        public function createAssist($id) {
+            $fecha = date('Y-m-d');
+            $student = Student::find($id);
+            
+            if($student) {
+                // Verificar si ya existe una asistencia para este estudiante en la fecha actual
+                $queryDate = Assist::where('student_id', $student->id)
+                                   ->whereDate('created_at', $fecha)
+                                   ->exists();
+                                   
+                if($queryDate) {
+                    return redirect()->route('students.findStudent')->withError('Ya existe una asistencia para este día');
+                } else {
+                    Assist::create([
+                        'student_id' => $student->id,
+                    ]);
+                    return redirect()->route('students.findStudent')->withSuccess('Asistencia cargada correctamente');
+                }
+            } else {
+                return redirect()->route('students.findStudent')->withError('No existe el estudiante');
             }
         }
-    
+        
 }
 
