@@ -73,6 +73,16 @@
                             @endif
                         </div>
                     </div>
+
+                    <div class="mb-3 row">
+                        <label for="year" class="col-md-4 col-form-label text-md-end text-start">year</label>
+                        <div class="col-md-6">
+                            <textarea class="form-control @error('year') is-invalid @enderror" id="year" name="year">{{ $student->year }}</textarea>
+                            @if ($errors->has('year'))
+                                <span class="text-danger">{{ $errors->first('year') }}</span>
+                            @endif
+                        </div>
+                    </div>
                     
                     <div class="mb-3 row">
                         <input type="submit" class="col-md-3 offset-md-5 btn btn-primary" value="Update">

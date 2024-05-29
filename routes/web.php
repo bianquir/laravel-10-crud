@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AssistController;
+use App\Http\Controllers\ParameterController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
@@ -48,14 +49,17 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
-require __DIR__.'/auth.php';
-
-///////muestra la vista para buscar el estudiante
+    ///////muestra la vista para buscar el estudiante
 Route::get('/findStudent', [AssistController::class, 'mostrarVista'])->name('students.findStudent');
 //////ruta de tipo post para enviar la peticion y muestre otra pantalla/////
 Route::post('encontrado/student', [AssistController::class, 'buscarStudent'])->name('students.encontrado');
 //////ruta que envia la asistencia/////
 Route::post('assistInsert/{id}', [AssistController::class, 'createAssist'])->name('assist.insert');
-Route::get('/cumple', [StudentController::class, 'rememberBirthday']);
+Route::resource('parameters', ParameterController::class);
+Route::get('/condition', [StudentController::class, 'condition'])->name('students.condition');
+Route::get('students/export', [StudentController::class, 'export'])->name('students.export');
+  
+});
+
+require __DIR__.'/auth.php';
+

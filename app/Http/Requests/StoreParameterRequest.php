@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateStudentRequest extends FormRequest
+class StoreParameterRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,13 +22,9 @@ class UpdateStudentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'dni' => 'required|integer|unique:students,dni,'.$this->student->id,
-            'name' => 'required|string|max:255',
-            'lastname' => 'required|string|max:255',
-            'Birthdate' => 'required|date|before_or_equal:'.now()->subYears(18)->format('d-m-Y'),
-            'cluster' => 'required|in:A,B',
-            'year'=>'required|in:1,2,3',
-
+            'days_classes'=> 'required|integer',
+            'promotion_percentage'=> 'required|integer|between:0,100',
+            'regular_percentage'=> 'required|integer|between:0,100',
         ];
     }
 }

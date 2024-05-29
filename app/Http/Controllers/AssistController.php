@@ -25,7 +25,7 @@ class AssistController extends Controller
             if($student){
                 return view('students.checkAssist', compact('student'));
             }else{
-                return redirect()->route('students.findStudent')->withError('No existe');
+                return redirect()->route('students.findStudent')->withError('El DNI ingresado no pertenece a un estudiante');
             }
             
         }

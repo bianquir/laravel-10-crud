@@ -17,6 +17,11 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('parameters.index')" :active="request()->routeIs('')">
+                        {{ __('Configuración') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('students.index')" :active="request()->routeIs('students.index')">
                         {{ __('Estudiantes') }}
                     </x-nav-link>
@@ -24,6 +29,12 @@
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('students.findStudent')" :active="request()->routeIs('')">
                         {{ __('Asistencias') }}
+                    </x-nav-link>
+                </div>
+
+                                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('students.condition')" :active="request()->routeIs('')">
+                        {{ __('Condiciones') }}
                     </x-nav-link>
                 </div>
 

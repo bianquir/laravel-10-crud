@@ -50,6 +50,13 @@
                             {{ $student->cluster }}
                         </div>
                     </div>
+
+                    <div class="row">
+                        <label for="description" class="col-md-4 col-form-label text-md-end text-start"><strong>Year:</strong></label>
+                        <div class="col-md-6" style="line-height: 35px;">
+                            {{ $student->year}}
+                        </div>
+                    </div>
         
             </div>
         </div>

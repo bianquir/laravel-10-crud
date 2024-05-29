@@ -26,7 +26,8 @@ class StoreStudentRequest extends FormRequest
             'name' => 'required|string|max:255', 
             'lastname' => 'required|string|max:255', 
             'Birthdate' => 'required|date|before_or_equal:' .now()->subYears(18)->format('d-m-Y'), 
-            'cluster' => 'required|string|max:255',
+            'cluster' => 'required|in:A,B',
+            'year'=>'required|in:1,2,3',
         ];
     }
 }
