@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreParameterRequest;
-use App\Http\Requests\UpdateParameterRequest;
 use App\Models\Parameter;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -36,7 +35,4 @@ class ParameterController extends Controller
             ->withSuccess('Configuración actualizada');
     }
 }
-
-
-//new UpdateParameterRequest($request->all()), $parameter
 

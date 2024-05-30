@@ -7,10 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StudentController;
 use App\Http\Middleware\Login;
-use App\Models\Assist;
-use App\Models\Product;
-use App\Models\Student;
-use Database\Factories\ProductFactory;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -50,14 +47,14 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     ///////muestra la vista para buscar el estudiante
-Route::get('/findStudent', [AssistController::class, 'mostrarVista'])->name('students.findStudent');
-//////ruta de tipo post para enviar la peticion y muestre otra pantalla/////
-Route::post('encontrado/student', [AssistController::class, 'buscarStudent'])->name('students.encontrado');
-//////ruta que envia la asistencia/////
-Route::post('assistInsert/{id}', [AssistController::class, 'createAssist'])->name('assist.insert');
-Route::resource('parameters', ParameterController::class);
-Route::get('/condition', [StudentController::class, 'condition'])->name('students.condition');
-Route::get('students/export', [StudentController::class, 'export'])->name('students.export');
+    Route::get('/findStudent', [AssistController::class, 'mostrarVista'])->name('students.findStudent');
+    //////ruta de tipo post para enviar la peticion y muestre otra pantalla/////
+    Route::post('encontrado/student', [AssistController::class, 'buscarStudent'])->name('students.encontrado');
+    //////ruta que envia la asistencia/////
+    Route::post('assistInsert/{id}', [AssistController::class, 'createAssist'])->name('assist.insert');
+    Route::resource('parameters', ParameterController::class);
+    Route::get('/condition', [StudentController::class, 'condition'])->name('students.condition');
+    Route::get('student/export', [StudentController::class, 'export'])->name('students.export');
   
 });
 

@@ -45,9 +45,9 @@
                                             <option value="">Todos</option>
                                             @foreach ($years as $year)
                                                 @if ($selectedYear == $year)
-                                                    <option value="{{ $year }}" selected>{{ $year }}</option>
+                                                    <option value="{{ $year }}" selected>{{ $year }}° año</option>
                                                 @else
-                                                    <option value="{{ $year }}">{{ $year }}</option>
+                                                    <option value="{{ $year }}">{{ $year }}° año</option>
                                                 @endif
                                             @endforeach
                                         </select>
@@ -83,7 +83,7 @@
                                         <td>{{ $student->lastname }}</td>
                                         <td>{{ $student->Birthdate }}</td>
                                         <td>{{ $student->cluster }}</td>
-                                        <td>{{ $student->year }}</td>
+                                        <td>{{ $student->year }}°</td>
                                         <td>
                                             <form action="{{ route('students.destroy', $student->id) }}" method="post">
                                                 @csrf

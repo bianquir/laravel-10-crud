@@ -35,10 +35,8 @@ class AssistController extends Controller
             $student = Student::find($id);
             
             if($student) {
-                // Verificar si ya existe una asistencia para este estudiante en la fecha actual
-                $queryDate = Assist::where('student_id', $student->id)
-                                   ->whereDate('created_at', $fecha)
-                                   ->exists();
+                // verificar si ya existe una asistencia para este estudiante en la fecha actual////
+                $queryDate = Assist::where('student_id', $student->id)->whereDate('created_at', $fecha)->exists();
                                    
                 if($queryDate) {
                     return redirect()->route('students.findStudent')->withError('Ya existe una asistencia para este día');

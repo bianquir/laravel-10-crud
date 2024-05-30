@@ -35,9 +35,9 @@
                                             <option value="">Todos</option>
                                             @foreach ($years as $year)
                                                 @if ($selectedYear == $year)
-                                                    <option value="{{ $year }}" selected>{{ $year }}</option>
+                                                    <option value="{{ $year }}" selected>{{ $year }}° año</option>
                                                 @else
-                                                    <option value="{{ $year }}">{{ $year }}</option>
+                                                    <option value="{{ $year }}">{{ $year }}° año</option>
                                                 @endif
                                             @endforeach
                                         </select>
@@ -45,7 +45,7 @@
                                 </form>
                             </div>
                             <div class="col-auto">
-                                <a href="{{ route('students.export') }}" class="btn btn-success btn-sm my-2">
+                                <a href="{{route('students.export')}}" class="btn btn-success btn-sm my-2">
                                     <i class="bi bi-file-earmark-arrow-down"></i> Descargar lista
                                 </a>
                             </div>
@@ -67,7 +67,7 @@
                                         <td>{{ $data['student']->dni }}</td>
                                         <td>{{ $data['student']->name }}</td>
                                         <td>{{ $data['student']->lastname }}</td>
-                                        <td>{{ number_format($data['porcentaje_asistencia'],) }}%</td>
+                                        <td>{{ number_format($data['porcentaje_asistencia'])}}%</td>
                                         <td>{{$data['condicion']}}</td>
                                     </tr>
                                 @empty
@@ -81,7 +81,6 @@
                                 @endforelse
                             </tbody>
                         </table>
-                        {{ $students->appends(['year' => $selectedYear])->links() }}
                     </div>
                 </div>
             </div>    
@@ -89,4 +88,6 @@
     </div>
 </x-app-layout>
 @endsection
+
+
 

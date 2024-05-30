@@ -146,16 +146,16 @@ class StudentController extends Controller
 
         
         $filterResults = $this->filterByYear($request);
-        $students = $filterResults['studentsQuery']->paginate(10);
+        $students = $filterResults['studentsQuery']->get();
     
       
         $studentData = [];
     
         foreach ($students as $student) {
             $total_assists = Assist::where('student_id', $student->id)->count();
-    
+        
             $porcentaje_asistencia = ($total_assists / $dias_clases) * 100;
-    
+        
             if ($porcentaje_asistencia >= $porcentaje_promocion) {
                 $condicion = 'Promoción';
             } elseif ($porcentaje_asistencia >= $porcentaje_regular) {
@@ -163,10 +163,10 @@ class StudentController extends Controller
             } else {
                 $condicion = 'Libre';
             }
-    
-            $studentData[] = [
+        
+           $studentData[] = [
                 'student' => $student,
-                'porcentaje_asistencia' => $porcentaje_asistencia,
+                'porcentaje_asistencia' => $porcentaje_asistencia, 
                 'condicion' => $condicion
             ];
         }
@@ -179,10 +179,14 @@ class StudentController extends Controller
         ]);
     }
     
-    public function export() 
-    {
-        return Excel::download(new StudentsExport, 'students.xlsx');
+    public function export(Request $request)
+    {   
+        $condicion= $this->condition($request);
+        $data= $condicion['studentData'];
+       
+        return Excel::download(new StudentsExport($data), 'students.xlsx');
     }
+    
     
 
     
