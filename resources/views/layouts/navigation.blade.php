@@ -32,13 +32,16 @@
                     </x-nav-link>
                 </div>
 
-                                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('students.condition')" :active="request()->routeIs('')">
                         {{ __('Condiciones') }}
                     </x-nav-link>
                 </div>
-
-
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('loggings')" :active="request()->routeIs('')">
+                        {{ __('Registros') }}
+                    </x-nav-link>
+                </div>
             </div>
 
             <!-- Settings Dropdown -->

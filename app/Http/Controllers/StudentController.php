@@ -17,6 +17,17 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class StudentController extends Controller
 {
+    public function __construct()
+    {
+        // Aplicar el middleware 'loggin' solo a las rutas específicas
+        $this->middleware('loggin')->only(['store', 'update', 'destroy']);
+
+        //$this->middleware('loggin: edit')->only(['store']);
+        //$this->middleware('loggin: update')->only(['update']);
+        //$this->middleware('loggin: delete')->only(['destroy']);
+
+
+    }
     public function index(Request $request) : View
     {
         $filterResults = $this->filterByYear($request);
@@ -186,8 +197,4 @@ class StudentController extends Controller
        
         return Excel::download(new StudentsExport($data), 'students.xlsx');
     }
-    
-    
-
-    
 }

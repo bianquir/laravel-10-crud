@@ -1,13 +1,15 @@
 <?php
 
 use App\Http\Controllers\AssistController;
+use App\Http\Controllers\LogginController;
+use App\Http\Controllers\MateriaController;
 use App\Http\Controllers\ParameterController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StudentController;
 use App\Http\Middleware\Login;
-
+use App\Models\Student;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,7 +33,7 @@ Route::get('products/{id}', [ProductController::class, 'respuestaProd']);
 Route::get('assists/{id}' , [StudentController::class, 'asistencia'])->name('students.assists');
 Route::get('log')->middleware(Login::class);
 
-
+Route::get('/logging', [LogginController::class, 'index'])->name('loggings')->middleware('admin');
 
 Route::get('/', function () {
     return view('welcome');
@@ -55,8 +57,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('parameters', ParameterController::class);
     Route::get('/condition', [StudentController::class, 'condition'])->name('students.condition');
     Route::get('student/export', [StudentController::class, 'export'])->name('students.export');
-  
 });
+
 
 require __DIR__.'/auth.php';
 
