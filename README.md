@@ -8,6 +8,7 @@
 5. Configura la clave de aplicacion ejecutando `php artisan key:generate`.
 6. Ejecuta el siguiente comando para migrar la base de datos:  `php artisan migrate`.
 En caso de querer utilizar datos de prueba (seeders) ejecuta el comando:   `php artisan migrate --seed` 
-7. Para iniciar el servidor , ejecuta el comando `php artisan serve`.
-8. Abre tu navegador y visita la URL proporcionada una vez ejecutado el comando anterior (Suele aparecer como: http://localhost:8000).
-9. Una vez dentro del proyecto en tu navegador, ve al apartado configuración, para establecer la configuración de tu sistema.
+7. Ejecuta el comando `npm run dev`.
+8. Para iniciar el servidor , ejecuta el comando `php artisan serve`.
+9. Abre tu navegador y visita la URL proporcionada una vez ejecutado el comando anterior (Suele aparecer como: http://localhost:8000).
+10. Una vez dentro del proyecto en tu navegador, ve al apartado configuración, para establecer la configuración de tu sistema.
